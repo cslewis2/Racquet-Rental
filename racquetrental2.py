@@ -1,4 +1,4 @@
-'''A simple logbook for racquet rental saved to RACQUETRENTAL.csv'''
+'''A simple logbook for racquet rental saved to RACQUETRENTAL.csv verifying repo'''
 
 import csv
 import os

@@ -15,7 +15,7 @@ def save_contact(Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Retur
         writer.writerow([Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials])
       
 def get_contacts():
-'''fn docstring here'''
+    '''review contacts'''
     contacts = []
     with open('RacquetRentals.csv', mode='r') as csvfile:
         reader = csv.reader(csvfile)
@@ -26,9 +26,9 @@ def get_contacts():
                
 def main():
     
-    sg.theme('DarkAmber')
+    sg.theme('SystemDefault')
     layout =[[sg.Text('Please enter rental information')],
-    [sg.Text('Rental_Date mm/dd/yyyy', size =(15, 1)), sg.InputText(key='Rental_Date')],
+    [sg.Text('Rental_Date', size =(15, 1)), sg.InputText(key='Rental_Date')],
     [sg.Text('User_Name', size =(15, 1)), sg.InputText(key='User_Name')],
     [sg.Text('Racquet_Mfg', size =(20, 1)), sg.InputText(key='Racquet_Mfg')],
     [sg.Text('Racquet_Model', size =(20, 1)), sg.InputText(key='Racquet_Model')],

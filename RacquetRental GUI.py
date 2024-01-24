@@ -29,10 +29,10 @@ def main():
     layout =[[sg.Text('Please enter rental information')],
     [sg.Text('Rental_Date mm/dd/yyyy', size =(15, 1)), sg.InputText(key='Rental_Date')],
     [sg.Text('User_Name', size =(15, 1)), sg.InputText(key='User_Name')],
-    [sg.Text('Racquet_Mfg', size =(15, 1)), sg.InputText(key='Racquet_Mfg')],
+    [sg.Text('Racquet_Mfg', size =(20, 1)), sg.InputText(key='Racquet_Mfg')],
     [sg.Text('Racquet_Model', size =(20, 1)), sg.InputText(key='Racquet_Model')],
     [sg.Text('Head_Size', size =(20, 1)), sg.InputText(key='Head_Size')],
-    [sg.Text('Return_Date', size =(20, 1)), sg.InputText(key='Return_Date')],
+    [sg.Text('Return_Date', size =(15, 1)), sg.InputText(key='Return_Date')],
     [sg.Text('Staff initials', size =(15, 1)), sg.InputText(key='Staff_Initials')],
     [sg.Save(), sg.Exit()]]
     

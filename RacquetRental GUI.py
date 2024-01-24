@@ -15,6 +15,7 @@ def save_contact(Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Retur
         writer.writerow([Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials])
       
 def get_contacts():
+'''fn docstring here'''
     contacts = []
     with open('RacquetRentals.csv', mode='r') as csvfile:
         reader = csv.reader(csvfile)

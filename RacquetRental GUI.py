@@ -1,22 +1,22 @@
- from datetime import date
+#from datetime import date
 import os.path
 import csv
 import PySimpleGUI as sg
 
 
-def save_contact(Visit_Date,Guest_Fname,Guest_Lname,Guest_Address,Guest_City,Guest_State,Guest_Zip,Member_Name,Staff_Initials):
-    file_exists=os.path.isfile('eGuestData8877.csv')
-    with open('eGuestData8877.csv', mode='a', newline='') as csvfile:
-        fieldnames = ['Visit_Date','Guest_Fname','Guest_Lname','Guest_Address','Guest_City','Guest_State','Guest_Zip','Member_Name','Staff_Initials']
+def save_contact(Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials):
+    file_exists=os.path.isfile('RacquetRentals.csv')
+    with open('RacquetRentals.csv', mode='a', newline='') as csvfile:
+        #fieldnames = ['Rental_Date','User_Name','Racquet_Mfg','Racquet_Model','Head_Size','Return_Date','Staff_Initials']
         writer = csv.writer(csvfile)
         # writer = csv.writer(csvfile, fieldnames=fieldnames)
         # if not file_exists:
         #     writer.writeheader()
-        writer.writerow([Visit_Date,Guest_Fname,Guest_Lname,Guest_Address,Guest_City,Guest_State,Guest_Zip,Member_Name,Staff_Initials])
+        writer.writerow(['Rental_Date','User_Name','Racquet_Mfg','Racquet_Model','Head_Size','Return_Date','Staff_Initials'])
       
 def get_contacts():
     contacts = []
-    with open('eGuestData8877.csv', mode='r') as csvfile:
+    with open('RacquetRentals.csv', mode='r') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             contacts.append(row)
@@ -26,15 +26,13 @@ def get_contacts():
 def main():
     
     sg.theme('DarkAmber')
-    layout =[[sg.Text('Please enter guest information')],
-    [sg.Text('Visit_Date mm/dd/yyyy', size =(15, 1)), sg.InputText(key='Visit_Date')],       
-    [sg.Text('Guest first name', size =(15, 1)), sg.InputText(key='Guest_Fname')],
-    [sg.Text('Guest last name', size =(15, 1)), sg.InputText(key='Guest_Lname')],
-    [sg.Text('Guest address', size =(20, 1)), sg.InputText(key='Guest_Address')],
-    [sg.Text('Guest city', size =(20, 1)), sg.InputText(key='Guest_City')],
-    [sg.Text('Guest state', size =(20, 1)), sg.InputText(key='Guest_State')],
-    [sg.Text('Guest zip', size =(20, 1)), sg.InputText(key='Guest_Zip')],
-    [sg.Text('Member name', size =(15, 1)), sg.InputText(key='Member_Name')],
+    layout =[[sg.Text('Please enter rental information')],
+    [sg.Text('Rental_Date mm/dd/yyyy', size =(15, 1)), sg.InputText(key='Rental_Date')],
+    [sg.Text('User_Name', size =(15, 1)), sg.InputText(key='User_Name')],
+    [sg.Text('Racquet_Mfg', size =(15, 1)), sg.InputText(key='Racquet_Mfg')],
+    [sg.Text('Racquet_Model', size =(20, 1)), sg.InputText(key='Racquet_Model')],
+    [sg.Text('Head_Size', size =(20, 1)), sg.InputText(key='Head_Size')],
+    [sg.Text('Return_Date', size =(20, 1)), sg.InputText(key='Return_Date')],
     [sg.Text('Staff initials', size =(15, 1)), sg.InputText(key='Staff_Initials')],
     [sg.Save(), sg.Exit()]]
     
@@ -45,8 +43,8 @@ def main():
     while True:
         event, values = window.read()
         if event == 'Save':
-            save_contact(values['Visit_Date'],values['Guest_Fname'],values['Guest_Lname'],values['Guest_Address'],
-                          values['Guest_City'],values['Guest_State'],values['Guest_Zip'],values['Member_Name'],values['Staff_Initials'])
+            save_contact(values['Rental_Date'],values['User_Name'],values['Racquet_Mfg'],values['Racquet_Model'],
+                          values['Head_Size'],values['Return_Date'],values['Staff_Initials'])
             sg.Popup('Contact saved!')
         elif event == 'Exit':
             break

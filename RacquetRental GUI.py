@@ -1,18 +1,18 @@
 #from datetime import date
-import os.path
+#import os.path
 import csv
 import PySimpleGUI as sg
 
 
 def save_contact(Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials):
-    file_exists=os.path.isfile('RacquetRentals.csv')
+    #file_exists=os.path.isfile('RacquetRentals.csv')
     with open('RacquetRentals.csv', mode='a', newline='') as csvfile:
-        #fieldnames = ['Rental_Date','User_Name','Racquet_Mfg','Racquet_Model','Head_Size','Return_Date','Staff_Initials']
+        fieldnames = ['Rental_Date','User_Name','Racquet_Mfg','Racquet_Model','Head_Size','Return_Date','Staff_Initials']
         writer = csv.writer(csvfile)
         # writer = csv.writer(csvfile, fieldnames=fieldnames)
         # if not file_exists:
         #     writer.writeheader()
-        writer.writerow(['Rental_Date','User_Name','Racquet_Mfg','Racquet_Model','Head_Size','Return_Date','Staff_Initials'])
+        writer.writerow([Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials])
       
 def get_contacts():
     contacts = []

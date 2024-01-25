@@ -8,7 +8,7 @@ def save_contact(rental_date,user_name,racquet_mfg,racquet_model,
                  head_size,return_date,staff_initials):
     '''write data to csv file'''
 
-    with open('RacquetRentals.csv', mode='a', newline='') as csvfile:
+    with open('RacquetRentals.csv', mode='a', newline='',encoding='UTF-8') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow([rental_date,user_name,racquet_mfg,racquet_model,
                          head_size,return_date,staff_initials])
@@ -16,12 +16,12 @@ def save_contact(rental_date,user_name,racquet_mfg,racquet_model,
 def get_contacts():
     '''review contacts'''
     contacts = []
-    with open ('RacquetRentals.csv', mode='r') as csvfile:
+    with open ('RacquetRentals.csv', mode='r',encoding='UTF-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             contacts.append(row)
     return contacts
-         
+
 def main():
     '''gui layout and logic'''
     sg.theme('SystemDefault')

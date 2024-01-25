@@ -1,5 +1,5 @@
-from datetime import date
-import os.path
+'''racquet renatal tracker for HVTC'''
+
 import csv
 import PySimpleGUI as sg
 
@@ -21,7 +21,7 @@ def get_contacts():
         for row in reader:
             contacts.append(row)
     return contacts
-
+         
 def main():
     '''gui layout and logic'''
     sg.theme('SystemDefault')

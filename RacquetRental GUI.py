@@ -1,51 +1,48 @@
-#from datetime import date
-#import os.path
+'''racquet renatal tracker for HVTC'''
+
 import csv
 import PySimpleGUI as sg
 
 
-def save_contact(Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials):
-    #file_exists=os.path.isfile('RacquetRentals.csv')
+def save_contact(rental_date,user_name,racquet_mfg,racquet_model,
+                 head_size,return_date,staff_initials):
+    '''write data to csv file'''
+
     with open('RacquetRentals.csv', mode='a', newline='') as csvfile:
-        fieldnames = ['Rental_Date','User_Name','Racquet_Mfg','Racquet_Model','Head_Size','Return_Date','Staff_Initials']
         writer = csv.writer(csvfile)
-        # writer = csv.writer(csvfile, fieldnames=fieldnames)
-        # if not file_exists:
-        #     writer.writeheader()
-        writer.writerow([Rental_Date,User_Name,Racquet_Mfg,Racquet_Model,Head_Size,Return_Date,Staff_Initials])
-      
+        writer.writerow([rental_date,user_name,racquet_mfg,racquet_model,
+                         head_size,return_date,staff_initials])
+
 def get_contacts():
     '''review contacts'''
     contacts = []
-    with open('RacquetRentals.csv', mode='r') as csvfile:
+    with open ('RacquetRentals.csv', mode='r') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             contacts.append(row)
     return contacts
-
-               
+         
 def main():
-    
+    '''gui layout and logic'''
     sg.theme('SystemDefault')
     layout =[[sg.Text('Please enter rental information')],
-    [sg.Text('Rental_Date', size =(15, 1)), sg.InputText(key='Rental_Date')],
-    [sg.Text('User_Name', size =(15, 1)), sg.InputText(key='User_Name')],
-    [sg.Text('Racquet_Mfg', size =(20, 1)), sg.InputText(key='Racquet_Mfg')],
-    [sg.Text('Racquet_Model', size =(20, 1)), sg.InputText(key='Racquet_Model')],
-    [sg.Text('Head_Size', size =(20, 1)), sg.InputText(key='Head_Size')],
-    [sg.Text('Return_Date', size =(15, 1)), sg.InputText(key='Return_Date')],
-    [sg.Text('Staff initials', size =(15, 1)), sg.InputText(key='Staff_Initials')],
+    [sg.Text('Rental date', size =(15, 1)), sg.InputText(key='rental_date')],
+    [sg.Text('User name', size =(15, 1)), sg.InputText(key='user_name')],
+    [sg.Text('Racquet mfg', size =(20, 1)), sg.InputText(key='racquet_mfg')],
+    [sg.Text('Racquet model', size =(20, 1)), sg.InputText(key='racquet_model')],
+    [sg.Text('Head size', size =(20, 1)), sg.InputText(key='head_size')],
+    [sg.Text('Return date', size =(15, 1)), sg.InputText(key='return_date')],
+    [sg.Text('Staff initials', size =(15, 1)), sg.InputText(key='staff_initials')],
     [sg.Save(), sg.Exit()]]
-    
-    window = sg.Window('eGuest with PySimple GUI', layout)
-    #event, values = window.read()
-    # window.close()
+
+    window = sg.Window('Racquet Rental Tracker', layout)
 
     while True:
         event, values = window.read()
         if event == 'Save':
-            save_contact(values['Rental_Date'],values['User_Name'],values['Racquet_Mfg'],values['Racquet_Model'],
-                          values['Head_Size'],values['Return_Date'],values['Staff_Initials'])
+            save_contact(values['rental_date'],values['user_name'],values['racquet_mfg'],
+                         values['racquet_model'],values['head_size'],values['return_date'],
+                         values['staff_initials'])
             sg.Popup('Contact saved!')
         elif event == 'Exit':
             break

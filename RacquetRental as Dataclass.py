@@ -23,11 +23,9 @@ class raq_rent:
     #user_input:str
     #user_dat:list
 #cant figure below out,no idea why parsing failed...syntax error??
-Rentals=
-    [raq_rent1=raq_rent(98,27,'head'),
-    raq_rent2=raq_rent(105,27.5,'wilson'),
-    raq_rent3=raq_rent(100,26,'babolat')
-    ]
+Rentals=[raq_rent1=raq_rent(98,27,'head'), raq_rent2=raq_rent(105,27.5,'wilson'),
+    raq_rent3=raq_rent(100,26,'babolat')]
+
 csv_filename='Racquet Rental Log.csv'
 
 fieldnames = list(asdict(Rentals[0]).keys())

@@ -1,34 +1,22 @@
 from dataclasses import dataclass, asdict
 import csv
+import os.path
 
-
-#import csv
-#from dataclasses import dataclass, asdict
-
-# 1. Define the data class using @dataclass
-# 2. Create a list of dataclass instances
-# 3. Write the dataclasses to a CSV file
-# 4. asdict() turns each dataclass instance into a dictionary
-# 5 . Create csv file
-    #with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
-# 6. Write the column headers   
-# 8.Write the data rows
-# 9. print(f"Successfully wrote data to {csv_filename}")
 
 @dataclass
 class raq_rent:
     r_head:float
     r_length:float
     r_manuf:str
-    #user_input:str
-    #user_dat:list
-#cant figure below out,no idea why parsing failed...syntax error??
-Rentals=[raq_rent1=raq_rent(98,27,'head'), raq_rent2=raq_rent(105,27.5,'wilson'),
-    raq_rent3=raq_rent(100,26,'babolat')]
+
+Rentals=[raq_rent(98,27,'head'), raq_rent(105,27.5,'wilson'),
+    raq_rent(100,26,'babolatGOOFY')]
 
 csv_filename='Racquet Rental Log.csv'
 
 fieldnames = list(asdict(Rentals[0]).keys())
+
+file_exists=os.path.isfile('Racquet Rental Log.csv')
 
 with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -40,49 +28,36 @@ with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
     for rent in Rentals:
         writer.writerow(asdict(rent))
 
-print(f"Successfully wrote data to {csv_filename}")
+print(f"Successful! wrote data to {csv_filename}")
 
-#if __name__=="__main__":
-#    def user_dat():
-#        r_head=input('head size?  ')
-#        r_length=input('length?  ')
-#        r_manuf=input('manufacturer?  ')
-#        return [r_head,r_length,r_manuf]
-     
-#q=raq_rent (98,102,'head',32,44)
-#print(q)
+#problems to solve. 
+#Right now, only overwrites csv data. need to append to next row
+#How to populate Rentals on the fly wit user input
+#How to sanitize user input data
+#add rentAL date, rentER name
+#appify when done???
 
-#import csv
-#from dataclasses import dataclass, asdict
+work in this solution from eGuest project.
+ def member_name():
+        """generates merged member first and last names"""
+        member_first=(str.capitalize(input('member first name?  ')))
+        member_last=(str.capitalize(input('member last name?  ')))
+        member_name_merge=(' '.join([member_first,member_last]))
+        return member_name_merge
 
-# 1. Define the data class using @dataclass
-#@dataclass
-#class Employee:
-#    name: str
-#    department: str
-#    salary: float
 
-# 2. Create a list of dataclass instances
-#employees = [
-#    Employee("Alice Smith", "Engineering", 85000.00),
-#    Employee("Bob Jones", "Marketing", 62000.50),
-#    Employee("Charlie Brown", "Sales", 71000.00)
-#]
 
-# 3. Write the dataclasses to a CSV file
-#csv_filename = "employees.csv"
+with open('eGuestREDO1225222.csv', 'a', newline='') as csvfile:
+        fieldnames = ['Visit_Date','Guest_Fname','Guest_Lname','Guest_Address','Guest_City','Guest_State','Member_Name']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
 
-# asdict() turns each dataclass instance into a dictionary
-#fieldnames = list(asdict(employees[0]).keys())
-
-#with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
-#    writer = csv.DictWriter(file, fieldnames=fieldnames)
-#    
-#    # Write the column headers
-#    writer.writeheader()
-#    
-#    # Write the data rows
-#    for emp in employees:
-#        writer.writerow(asdict(emp))
-
-#print(f"Successfully wrote data to {csv_filename}")
+        for a in range (0,total_guests):
+                writer.writerow({'Visit_Date':visit_date(),'Guest_Fname':guest_fname(),\
+                'Guest_Lname':guest_lname(),'Guest_Address':guest_address(),\
+                'Guest_City':guest_city(),'Guest_State':guest_state(),'Member_Name':member_name()\
+                })
+#there is 1 and only 1 set of function calls at the end of scrit when writing 
+#csv to disk...otherwise will call a second #time at the end and overwrite
+#original data input by userfile_exists=os.path.isfile('eGuestREDO1225222.csv')

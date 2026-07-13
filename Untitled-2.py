@@ -6,7 +6,7 @@ import os.path
 @dataclass
 class raq_rent:
     '''Racquet specifications'''
-    r_num:float
+    r_num:float  #should be using these class variables for user input??maybe!
     r_head:float
     r_length:float
     r_manuf:str
@@ -31,7 +31,7 @@ with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
     #writer.writeheader()
         # Write the data rows
     for rent in range (0,num_out):
-        writer.writerow(asdict(rentals))#solution is here somewhere....
+        writer.writerow(asdict(Rentals())#solution is here somewhere....
 
 print(f"Successful! wrote data to {csv_filename}")
 

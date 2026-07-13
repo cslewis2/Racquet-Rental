@@ -22,8 +22,6 @@ file_exists=os.path.isfile('Racquet Rental Log.csv')
 
 with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames)
-    writer.writeheader()
-
 # Write the column headers
     writer.writeheader()
         # Write the data rows
@@ -34,7 +32,7 @@ print(f"Successful! wrote data to {csv_filename}")
 
 #problems to solve.
 #Right now, only overwrites csv data. need to append to next row
-#How to populate Rentals on the fly wit user input
+#How to populate Rentals on the fly wit user input...DONE
 #How to sanitize user input data
 #add rentAL date, rentER name
 #appify when done???

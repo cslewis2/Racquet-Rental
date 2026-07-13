@@ -2,35 +2,36 @@
 from dataclasses import dataclass, asdict
 import csv
 import os.path
-import string
-
 
 @dataclass
 class raq_rent:
     '''Racquet specifications'''
+    r_num:float
     r_head:float
     r_length:float
     r_manuf:str
+num_out=int(input('how many racquets going out?'))
+usr_manuf=input(str('what is racquet manufacturer?  '))
+usr_length= input(str('what is racquet length?  '))      #incorporate try/fail user input sanitation
+user_headsize=input(str( 'what is racquet head size?  '))
 
-usr_manuf=input(str('what is racquet manufacturer?'))
-usr_length= input(str('what is racquet length'))      #incorporate try/fail user input sanitation
-user_headsize=input(str( 'what is racquet head size'))
-Rentals=[raq_rent(98,27,'head'), raq_rent(105,27.5,'wilson'),
-    raq_rent(100,26,'babolatGOOFY')]
 
-csv_filename='Racquet Rental Log.csv'
-fieldnames = list(asdict(Rentals[0]).keys())
-file_exists=os.path.isfile('Racquet Rental Log.csv')
+#for rentals in range(0,num_out):
+Rentals=[raq_rent(num_out,usr_manuf,usr_length,user_headsize)]
+
+csv_filename='Racquet Rental LogUNT.csv'
+fieldnames = list(asdict(Rentals[0]).keys())#asdict shoul be called on dataclas instances;TypeError
+file_exists=os.path.isfile('Racquet Rental LogUNT.csv')
 
 with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
 
 # Write the column headers
-    writer.writeheader()
+    #writer.writeheader()
         # Write the data rows
-    for rent in Rentals:
-        writer.writerow(asdict(rent))
+    for rent in range (0,num_out):
+        writer.writerow(asdict(rentals))#solution is here somewhere....
 
 print(f"Successful! wrote data to {csv_filename}")
 
